@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/registry/new-york/ui/card"
-import { themes } from "@/registry/themes"
 
 const data = [
   {
@@ -45,8 +44,6 @@ const data = [
 export function CardsMetric() {
   const { theme: mode } = useTheme()
   const [config] = useConfig()
-
-  const theme = themes.find((theme) => theme.name === config.theme)
 
   return (
     <Card>
@@ -111,7 +108,7 @@ export function CardsMetric() {
                     stroke: "var(--theme-primary)",
                     opacity: 0.25,
                     "--theme-primary": `hsl(${
-                      theme?.cssVars[mode === "dark" ? "dark" : "light"].primary
+                      config?.cssVars[mode === "dark" ? "dark" : "light"].primary
                     })`,
                   } as React.CSSProperties
                 }
@@ -128,7 +125,7 @@ export function CardsMetric() {
                   {
                     stroke: "var(--theme-primary)",
                     "--theme-primary": `hsl(${
-                      theme?.cssVars[mode === "dark" ? "dark" : "light"].primary
+                      config?.cssVars[mode === "dark" ? "dark" : "light"].primary
                     })`,
                   } as React.CSSProperties
                 }
