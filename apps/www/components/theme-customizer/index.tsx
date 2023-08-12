@@ -4,17 +4,13 @@ import * as React from "react"
 import {
   CheckIcon,
   CopyIcon,
-  InfoCircledIcon,
-  MoonIcon,
-  ResetIcon,
-  SunIcon,
 } from "@radix-ui/react-icons"
 import template from "lodash.template"
 import { Paintbrush } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { cn } from "@/lib/utils"
-import { useConfig } from "@/hooks/use-config"
+import { useConfig, Config } from "@/hooks/use-config"
 import { copyToClipboardWithMeta } from "@/components/copy-button"
 import { DrawerContent, DrawerTrigger } from "@/components/drawer"
 import { ThemeWrapper } from "@/components/theme-wrapper"
@@ -27,7 +23,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/registry/new-york/ui/dialog"
-import { Label } from "@/registry/new-york/ui/label"
 import {
   Popover,
   PopoverContent,
@@ -44,6 +39,12 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/registry/new-york/ui/tooltip"
+import CustomizerHeader from "./customizer-header"
+import StyleSection from "./style-section"
+import ColorSection from "./color-section"
+import RadiusSection from "./radius-section"
+import ModeSection from "./mode-section"
+import ColorPickerSection from "./color-picker-section"
 
 export function ThemeCustomizer() {
   const [config, setConfig] = useConfig()
@@ -53,6 +54,21 @@ export function ThemeCustomizer() {
   React.useEffect(() => {
     setMounted(true)
   }, [])
+
+  const getUpdatedStyle = (theme: Theme) => ({
+    "--theme-primary": `hsl(${theme?.activeColor[
+      mode === "dark" ? "dark" : "light"
+    ]
+    })`,
+  } as React.CSSProperties)
+
+  const updateTheme = (theme: Theme) => {
+    setConfig({
+      ...config,
+      theme: theme.name,
+      cssVars: theme.cssVars as any,
+    })
+  }
 
   return (
     <div className="flex items-center space-x-2">
@@ -83,27 +99,14 @@ export function ThemeCustomizer() {
                   <Tooltip key={theme.name}>
                     <TooltipTrigger asChild>
                       <button
-                        onClick={() =>
-                          setConfig({
-                            ...config,
-                            theme: theme.name,
-                          })
-                        }
+                        onClick={() => updateTheme(theme)}
                         className={cn(
                           "flex h-9 w-9 items-center justify-center rounded-full border-2 text-xs",
                           isActive
                             ? "border-[--theme-primary]"
                             : "border-transparent"
                         )}
-                        style={
-                          {
-                            "--theme-primary": `hsl(${
-                              theme?.activeColor[
-                                mode === "dark" ? "dark" : "light"
-                              ]
-                            })`,
-                          } as React.CSSProperties
-                        }
+                        style={getUpdatedStyle(theme)}
                       >
                         <span
                           className={cn(
@@ -145,7 +148,6 @@ export function ThemeCustomizer() {
             </Button>
           </PopoverTrigger>
           <PopoverContent
-            align="end"
             className="z-40 w-[340px] rounded-[0.5rem] bg-white p-6 dark:bg-zinc-950"
           >
             <Customizer />
@@ -157,213 +159,29 @@ export function ThemeCustomizer() {
   )
 }
 
-function Customizer() {
-  const [mounted, setMounted] = React.useState(false)
-  const { setTheme: setMode, resolvedTheme: mode } = useTheme()
-  const [config, setConfig] = useConfig()
-
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-
+export function Customizer({ className }: { className?: string }) {
   return (
     <ThemeWrapper
       defaultTheme="zinc"
-      className="flex flex-col space-y-4 md:space-y-6"
+      className={cn(
+        "scroll-y-auto fixed inset-y-0 right-0 flex h-screen max-w-[30rem] flex-col space-y-4 overflow-y-scroll rounded-md border-2 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:bg-black/80 md:space-y-6",
+        className
+      )}
     >
-      <div className="flex items-start">
-        <div className="space-y-1 pr-2">
-          <div className="font-semibold leading-none tracking-tight">
-            Customize
-          </div>
-          <div className="text-xs text-muted-foreground">
-            Pick a style and color for your components.
-          </div>
-        </div>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="ml-auto rounded-[0.5rem]"
-          onClick={() => {
-            setConfig({
-              ...config,
-              theme: "zinc",
-              radius: 0.5,
-            })
-          }}
-        >
-          <ResetIcon />
-          <span className="sr-only">Reset</span>
-        </Button>
-      </div>
+      <CustomizerHeader />
       <div className="flex flex-1 flex-col space-y-4 md:space-y-6">
-        <div className="space-y-1.5">
-          <div className="flex w-full items-center">
-            <Label className="text-xs">Style</Label>
-            <Popover>
-              <PopoverTrigger>
-                <InfoCircledIcon className="ml-1 h-3 w-3" />
-                <span className="sr-only">About styles</span>
-              </PopoverTrigger>
-              <PopoverContent
-                className="space-y-3 rounded-[0.5rem] text-sm"
-                side="right"
-                align="start"
-                alignOffset={-20}
-              >
-                <p className="font-medium">
-                  What is the difference between the New York and Default style?
-                </p>
-                <p>
-                  A style comes with its own set of components, animations,
-                  icons and more.
-                </p>
-                <p>
-                  The <span className="font-medium">Default</span> style has
-                  larger inputs, uses lucide-react for icons and
-                  tailwindcss-animate for animations.
-                </p>
-                <p>
-                  The <span className="font-medium">New York</span> style ships
-                  with smaller buttons and cards with shadows. It uses icons
-                  from Radix Icons.
-                </p>
-              </PopoverContent>
-            </Popover>
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            <Button
-              variant={"outline"}
-              size="sm"
-              onClick={() => setConfig({ ...config, style: "default" })}
-              className={cn(
-                config.style === "default" && "border-2 border-primary"
-              )}
-            >
-              Default
-            </Button>
-            <Button
-              variant={"outline"}
-              size="sm"
-              onClick={() => setConfig({ ...config, style: "new-york" })}
-              className={cn(
-                config.style === "new-york" && "border-2 border-primary"
-              )}
-            >
-              New York
-            </Button>
-          </div>
-        </div>
-        <div className="space-y-1.5">
-          <Label className="text-xs">Color</Label>
-          <div className="grid grid-cols-3 gap-2">
-            {themes.map((theme) => {
-              const isActive = config.theme === theme.name
-
-              return mounted ? (
-                <Button
-                  variant={"outline"}
-                  size="sm"
-                  key={theme.name}
-                  onClick={() => {
-                    setConfig({
-                      ...config,
-                      theme: theme.name,
-                    })
-                  }}
-                  className={cn(
-                    "justify-start",
-                    isActive && "border-2 border-primary"
-                  )}
-                  style={
-                    {
-                      "--theme-primary": `hsl(${
-                        theme?.activeColor[mode === "dark" ? "dark" : "light"]
-                      })`,
-                    } as React.CSSProperties
-                  }
-                >
-                  <span
-                    className={cn(
-                      "mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
-                    )}
-                  >
-                    {isActive && <CheckIcon className="h-4 w-4 text-white" />}
-                  </span>
-                  {theme.label}
-                </Button>
-              ) : (
-                <Skeleton className="h-8 w-full" key={theme.name} />
-              )
-            })}
-          </div>
-        </div>
-        <div className="space-y-1.5">
-          <Label className="text-xs">Radius</Label>
-          <div className="grid grid-cols-5 gap-2">
-            {["0", "0.3", "0.5", "0.75", "1.0"].map((value) => {
-              return (
-                <Button
-                  variant={"outline"}
-                  size="sm"
-                  key={value}
-                  onClick={() => {
-                    setConfig({
-                      ...config,
-                      radius: parseFloat(value),
-                    })
-                  }}
-                  className={cn(
-                    config.radius === parseFloat(value) &&
-                      "border-2 border-primary"
-                  )}
-                >
-                  {value}
-                </Button>
-              )
-            })}
-          </div>
-        </div>
-        <div className="space-y-1.5">
-          <Label className="text-xs">Mode</Label>
-          <div className="grid grid-cols-3 gap-2">
-            {mounted ? (
-              <>
-                <Button
-                  variant={"outline"}
-                  size="sm"
-                  onClick={() => setMode("light")}
-                  className={cn(mode === "light" && "border-2 border-primary")}
-                >
-                  <SunIcon className="mr-1 -translate-x-1" />
-                  Light
-                </Button>
-                <Button
-                  variant={"outline"}
-                  size="sm"
-                  onClick={() => setMode("dark")}
-                  className={cn(mode === "dark" && "border-2 border-primary")}
-                >
-                  <MoonIcon className="mr-1 -translate-x-1" />
-                  Dark
-                </Button>
-              </>
-            ) : (
-              <>
-                <Skeleton className="h-8 w-full" />
-                <Skeleton className="h-8 w-full" />
-              </>
-            )}
-          </div>
-        </div>
+        <StyleSection />
+        <ColorSection />
+        <RadiusSection />
+        <ModeSection />
+        <ColorPickerSection />
       </div>
     </ThemeWrapper>
-  )
+  );
 }
 
 function CopyCodeButton() {
   const [config] = useConfig()
-  const activeTheme = themes.find((theme) => theme.name === config.theme)
   const [hasCopied, setHasCopied] = React.useState(false)
 
   React.useEffect(() => {
@@ -372,20 +190,23 @@ function CopyCodeButton() {
     }, 2000)
   }, [hasCopied])
 
+  const copyCode = () => {
+    if (!config) return;
+    copyToClipboardWithMeta(getThemeCode(config, parseFloat(config.cssVars.light.radius || "0.5")), {
+      name: "copy_theme_code",
+      properties: {
+        theme: config.theme,
+        radius: config.cssVars.light.radius || "0.5",
+      },
+    })
+    setHasCopied(true)
+  }
+
   return (
     <>
-      {activeTheme && (
+      {config && (
         <Button
-          onClick={() => {
-            copyToClipboardWithMeta(getThemeCode(activeTheme, config.radius), {
-              name: "copy_theme_code",
-              properties: {
-                theme: activeTheme.name,
-                radius: config.radius,
-              },
-            })
-            setHasCopied(true)
-          }}
+          onClick={copyCode}
           className="md:hidden"
         >
           {hasCopied ? (
@@ -409,22 +230,10 @@ function CopyCodeButton() {
           </DialogHeader>
           <ThemeWrapper defaultTheme="zinc" className="relative">
             <CustomizerCode />
-            {activeTheme && (
+            {config && (
               <Button
                 size="sm"
-                onClick={() => {
-                  copyToClipboardWithMeta(
-                    getThemeCode(activeTheme, config.radius),
-                    {
-                      name: "copy_theme_code",
-                      properties: {
-                        theme: activeTheme.name,
-                        radius: config.radius,
-                      },
-                    }
-                  )
-                  setHasCopied(true)
-                }}
+                onClick={copyCode}
                 className="absolute right-4 top-4 bg-muted text-muted-foreground hover:bg-muted hover:text-muted-foreground"
               >
                 {hasCopied ? (
@@ -444,7 +253,6 @@ function CopyCodeButton() {
 
 function CustomizerCode() {
   const [config] = useConfig()
-  const activeTheme = themes.find((theme) => theme.name === config.theme)
 
   return (
     <ThemeWrapper defaultTheme="zinc" className="relative space-y-4">
@@ -455,11 +263,11 @@ function CustomizerCode() {
             <span className="line text-white">&nbsp;&nbsp;:root &#123;</span>
             <span className="line text-white">
               &nbsp;&nbsp;&nbsp;&nbsp;--background:{" "}
-              {activeTheme?.cssVars.light["background"]};
+              {config?.cssVars.light["background"]};
             </span>
             <span className="line text-white">
               &nbsp;&nbsp;&nbsp;&nbsp;--foreground:{" "}
-              {activeTheme?.cssVars.light["foreground"]};
+              {config?.cssVars.light["foreground"]};
             </span>
             {[
               "card",
@@ -474,8 +282,8 @@ function CustomizerCode() {
                 <span className="line text-white">
                   &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}:{" "}
                   {
-                    activeTheme?.cssVars.light[
-                      prefix as keyof typeof activeTheme.cssVars.light
+                    config?.cssVars.light[
+                    prefix as keyof typeof config.cssVars.light
                     ]
                   }
                   ;
@@ -483,8 +291,8 @@ function CustomizerCode() {
                 <span className="line text-white">
                   &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground:{" "}
                   {
-                    activeTheme?.cssVars.light[
-                      `${prefix}-foreground` as keyof typeof activeTheme.cssVars.light
+                    config?.cssVars.light[
+                    `${prefix}-foreground` as keyof typeof config.cssVars.light
                     ]
                   }
                   ;
@@ -493,29 +301,29 @@ function CustomizerCode() {
             ))}
             <span className="line text-white">
               &nbsp;&nbsp;&nbsp;&nbsp;--border:{" "}
-              {activeTheme?.cssVars.light["border"]};
+              {config?.cssVars.light["border"]};
             </span>
             <span className="line text-white">
               &nbsp;&nbsp;&nbsp;&nbsp;--input:{" "}
-              {activeTheme?.cssVars.light["input"]};
+              {config?.cssVars.light["input"]};
             </span>
             <span className="line text-white">
               &nbsp;&nbsp;&nbsp;&nbsp;--ring:{" "}
-              {activeTheme?.cssVars.light["ring"]};
+              {config?.cssVars.light["ring"]};
             </span>
             <span className="line text-white">
-              &nbsp;&nbsp;&nbsp;&nbsp;--radius: {config.radius}rem;
+              &nbsp;&nbsp;&nbsp;&nbsp;--radius: {config.cssVars.light.radius || "0.5"}rem;
             </span>
             <span className="line text-white">&nbsp;&nbsp;&#125;</span>
             <span className="line text-white">&nbsp;</span>
             <span className="line text-white">&nbsp;&nbsp;.dark &#123;</span>
             <span className="line text-white">
               &nbsp;&nbsp;&nbsp;&nbsp;--background:{" "}
-              {activeTheme?.cssVars.dark["background"]};
+              {config?.cssVars.dark["background"]};
             </span>
             <span className="line text-white">
               &nbsp;&nbsp;&nbsp;&nbsp;--foreground:{" "}
-              {activeTheme?.cssVars.dark["foreground"]};
+              {config?.cssVars.dark["foreground"]};
             </span>
             {[
               "card",
@@ -530,8 +338,8 @@ function CustomizerCode() {
                 <span className="line text-white">
                   &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}:{" "}
                   {
-                    activeTheme?.cssVars.dark[
-                      prefix as keyof typeof activeTheme.cssVars.dark
+                    config?.cssVars.dark[
+                    prefix as keyof typeof config.cssVars.dark
                     ]
                   }
                   ;
@@ -539,8 +347,8 @@ function CustomizerCode() {
                 <span className="line text-white">
                   &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground:{" "}
                   {
-                    activeTheme?.cssVars.dark[
-                      `${prefix}-foreground` as keyof typeof activeTheme.cssVars.dark
+                    config?.cssVars.dark[
+                    `${prefix}-foreground` as keyof typeof config.cssVars.dark
                     ]
                   }
                   ;
@@ -549,15 +357,15 @@ function CustomizerCode() {
             ))}
             <span className="line text-white">
               &nbsp;&nbsp;&nbsp;&nbsp;--border:{" "}
-              {activeTheme?.cssVars.dark["border"]};
+              {config?.cssVars.dark["border"]};
             </span>
             <span className="line text-white">
               &nbsp;&nbsp;&nbsp;&nbsp;--input:{" "}
-              {activeTheme?.cssVars.dark["input"]};
+              {config?.cssVars.dark["input"]};
             </span>
             <span className="line text-white">
               &nbsp;&nbsp;&nbsp;&nbsp;--ring:{" "}
-              {activeTheme?.cssVars.dark["ring"]};
+              {config?.cssVars.dark["ring"]};
             </span>
             <span className="line text-white">&nbsp;&nbsp;&#125;</span>
             <span className="line text-white">&#125;</span>
@@ -568,13 +376,13 @@ function CustomizerCode() {
   )
 }
 
-function getThemeCode(theme: Theme, radius: number) {
-  if (!theme) {
+function getThemeCode(config: Config, radius: number) {
+  if (!config) {
     return ""
   }
 
   return template(BASE_STYLES_WITH_VARIABLES)({
-    colors: theme.cssVars,
+    colors: config.cssVars,
     radius,
   })
 }

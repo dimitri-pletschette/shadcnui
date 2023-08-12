@@ -49,8 +49,6 @@ export function CardsStats() {
   const { theme: mode } = useTheme()
   const [config] = useConfig()
 
-  const theme = themes.find((theme) => theme.name === config.theme)
-
   return (
     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
       <Card>
@@ -85,7 +83,7 @@ export function CardsStats() {
                     {
                       stroke: "var(--theme-primary)",
                       "--theme-primary": `hsl(${
-                        theme?.cssVars[mode === "dark" ? "dark" : "light"]
+                        config?.cssVars[mode === "dark" ? "dark" : "light"]
                           .primary
                       })`,
                     } as React.CSSProperties
@@ -115,7 +113,7 @@ export function CardsStats() {
                       fill: "var(--theme-primary)",
                       opacity: 1,
                       "--theme-primary": `hsl(${
-                        theme?.cssVars[mode === "dark" ? "dark" : "light"]
+                        config?.cssVars[mode === "dark" ? "dark" : "light"]
                           .primary
                       })`,
                     } as React.CSSProperties

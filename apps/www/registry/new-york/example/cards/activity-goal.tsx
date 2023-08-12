@@ -15,7 +15,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/registry/new-york/ui/card"
-import { themes } from "@/registry/themes"
 
 const data = [
   {
@@ -63,7 +62,6 @@ export function CardsActivityGoal() {
   const { theme: mode } = useTheme()
   const [config] = useConfig()
 
-  const theme = themes.find((theme) => theme.name === config.theme)
   const [goal, setGoal] = React.useState(350)
 
   function onClick(adjustment: number) {
@@ -115,7 +113,7 @@ export function CardsActivityGoal() {
                     fill: "var(--theme-primary)",
                     opacity: 0.2,
                     "--theme-primary": `hsl(${
-                      theme?.cssVars[mode === "dark" ? "dark" : "light"].primary
+                      config?.cssVars[mode === "dark" ? "dark" : "light"].primary
                     })`,
                   } as React.CSSProperties
                 }
