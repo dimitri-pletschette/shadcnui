@@ -34,6 +34,11 @@ const nextConfig = {
         permanent: false,
       },
       {
+        source: "/showcase",
+        destination: "/showcase/1",
+        permanent: false,
+      },
+      {
         source: "/docs/primitives/:path*",
         destination: "/docs/components/:path*",
         permanent: true,
