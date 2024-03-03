@@ -280,6 +280,12 @@ const example: Registry = [
     files: ["example/alert-demo.tsx"],
   },
   {
+    name: "alert-success",
+    type: "components:example",
+    registryDependencies: ["alert"],
+    files: ["example/alert-success.tsx"],
+  },
+  {
     name: "alert-destructive",
     type: "components:example",
     registryDependencies: ["alert"],
@@ -310,6 +316,12 @@ const example: Registry = [
     files: ["example/badge-demo.tsx"],
   },
   {
+    name: "badge-success",
+    type: "components:example",
+    registryDependencies: ["badge"],
+    files: ["example/badge-success.tsx"],
+  },
+  {
     name: "badge-destructive",
     type: "components:example",
     registryDependencies: ["badge"],
@@ -338,6 +350,12 @@ const example: Registry = [
     type: "components:example",
     registryDependencies: ["button"],
     files: ["example/button-secondary.tsx"],
+  },
+  {
+    name: "button-success",
+    type: "components:example",
+    registryDependencies: ["button"],
+    files: ["example/button-success.tsx"],
   },
   {
     name: "button-destructive",
@@ -864,6 +882,12 @@ const example: Registry = [
     type: "components:example",
     registryDependencies: ["toast"],
     files: ["example/toast-demo.tsx"],
+  },
+  {
+    name: "toast-success",
+    type: "components:example",
+    registryDependencies: ["toast"],
+    files: ["example/toast-success.tsx"],
   },
   {
     name: "toast-destructive",

@@ -10,6 +10,7 @@ import BadgeDemo from "@/registry/default/example/badge-demo"
 import BadgeDestructive from "@/registry/default/example/badge-destructive"
 import BadgeOutline from "@/registry/default/example/badge-outline"
 import BadgeSecondary from "@/registry/default/example/badge-secondary"
+import BadgeSuccess from "@/registry/default/example/badge-success"
 import ButtonDemo from "@/registry/default/example/button-demo"
 import ButtonDestructive from "@/registry/default/example/button-destructive"
 import ButtonGhost from "@/registry/default/example/button-ghost"
@@ -17,6 +18,7 @@ import ButtonLink from "@/registry/default/example/button-link"
 import ButtonLoading from "@/registry/default/example/button-loading"
 import ButtonOutline from "@/registry/default/example/button-outline"
 import ButtonSecondary from "@/registry/default/example/button-secondary"
+import ButtonSuccess from "@/registry/default/example/button-success"
 import ButtonWithIcon from "@/registry/default/example/button-with-icon"
 import CardDemo from "@/registry/default/example/card-demo"
 import CheckboxDemo from "@/registry/default/example/checkbox-demo"
@@ -98,6 +100,7 @@ export default function KitchenSinkPage() {
               <div className="flex space-x-2">
                 <ButtonDemo />
                 <ButtonSecondary />
+                <ButtonSuccess />
                 <ButtonDestructive />
               </div>
               <div className="flex space-x-2">
@@ -165,6 +168,7 @@ export default function KitchenSinkPage() {
               <div className="flex space-x-2">
                 <BadgeDemo />
                 <BadgeSecondary />
+                <BadgeSuccess />
                 <BadgeDestructive />
                 <BadgeOutline />
               </div>

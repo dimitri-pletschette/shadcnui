@@ -10,6 +10,7 @@ import BadgeDemo from "@/registry/new-york/example/badge-demo"
 import BadgeDestructive from "@/registry/new-york/example/badge-destructive"
 import BadgeOutline from "@/registry/new-york/example/badge-outline"
 import BadgeSecondary from "@/registry/new-york/example/badge-secondary"
+import BadgeSuccess from "@/registry/new-york/example/badge-success"
 import ButtonDemo from "@/registry/new-york/example/button-demo"
 import ButtonDestructive from "@/registry/new-york/example/button-destructive"
 import ButtonGhost from "@/registry/new-york/example/button-ghost"
@@ -17,6 +18,7 @@ import ButtonLink from "@/registry/new-york/example/button-link"
 import ButtonLoading from "@/registry/new-york/example/button-loading"
 import ButtonOutline from "@/registry/new-york/example/button-outline"
 import ButtonSecondary from "@/registry/new-york/example/button-secondary"
+import ButtonSuccess from "@/registry/new-york/example/button-success"
 import ButtonWithIcon from "@/registry/new-york/example/button-with-icon"
 import CardDemo from "@/registry/new-york/example/card-demo"
 import CheckboxDemo from "@/registry/new-york/example/checkbox-demo"
@@ -97,6 +99,7 @@ export default function KitchenSinkPage() {
               <div className="flex space-x-2">
                 <ButtonDemo />
                 <ButtonSecondary />
+                <ButtonSuccess />
                 <ButtonDestructive />
               </div>
               <div className="flex space-x-2">
@@ -161,6 +164,7 @@ export default function KitchenSinkPage() {
               <div className="flex space-x-2">
                 <BadgeDemo />
                 <BadgeSecondary />
+                <BadgeSuccess />
                 <BadgeDestructive />
                 <BadgeOutline />
               </div>

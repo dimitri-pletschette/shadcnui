@@ -320,6 +320,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/example/alert-demo")),
       files: ["registry/default/example/alert-demo.tsx"],
     },
+    "alert-success": {
+      name: "alert-success",
+      type: "components:example",
+      registryDependencies: ["alert"],
+      component: React.lazy(() => import("@/registry/default/example/alert-success")),
+      files: ["registry/default/example/alert-success.tsx"],
+    },
     "alert-destructive": {
       name: "alert-destructive",
       type: "components:example",
@@ -355,6 +362,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/example/badge-demo")),
       files: ["registry/default/example/badge-demo.tsx"],
     },
+    "badge-success": {
+      name: "badge-success",
+      type: "components:example",
+      registryDependencies: ["badge"],
+      component: React.lazy(() => import("@/registry/default/example/badge-success")),
+      files: ["registry/default/example/badge-success.tsx"],
+    },
     "badge-destructive": {
       name: "badge-destructive",
       type: "components:example",
@@ -389,6 +403,13 @@ export const Index: Record<string, any> = {
       registryDependencies: ["button"],
       component: React.lazy(() => import("@/registry/default/example/button-secondary")),
       files: ["registry/default/example/button-secondary.tsx"],
+    },
+    "button-success": {
+      name: "button-success",
+      type: "components:example",
+      registryDependencies: ["button"],
+      component: React.lazy(() => import("@/registry/default/example/button-success")),
+      files: ["registry/default/example/button-success.tsx"],
     },
     "button-destructive": {
       name: "button-destructive",
@@ -999,6 +1020,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/example/toast-demo")),
       files: ["registry/default/example/toast-demo.tsx"],
     },
+    "toast-success": {
+      name: "toast-success",
+      type: "components:example",
+      registryDependencies: ["toast"],
+      component: React.lazy(() => import("@/registry/default/example/toast-success")),
+      files: ["registry/default/example/toast-success.tsx"],
+    },
     "toast-destructive": {
       name: "toast-destructive",
       type: "components:example",
@@ -1546,6 +1574,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/new-york/example/alert-demo")),
       files: ["registry/new-york/example/alert-demo.tsx"],
     },
+    "alert-success": {
+      name: "alert-success",
+      type: "components:example",
+      registryDependencies: ["alert"],
+      component: React.lazy(() => import("@/registry/new-york/example/alert-success")),
+      files: ["registry/new-york/example/alert-success.tsx"],
+    },
     "alert-destructive": {
       name: "alert-destructive",
       type: "components:example",
@@ -1581,6 +1616,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/new-york/example/badge-demo")),
       files: ["registry/new-york/example/badge-demo.tsx"],
     },
+    "badge-success": {
+      name: "badge-success",
+      type: "components:example",
+      registryDependencies: ["badge"],
+      component: React.lazy(() => import("@/registry/new-york/example/badge-success")),
+      files: ["registry/new-york/example/badge-success.tsx"],
+    },
     "badge-destructive": {
       name: "badge-destructive",
       type: "components:example",
@@ -1615,6 +1657,13 @@ export const Index: Record<string, any> = {
       registryDependencies: ["button"],
       component: React.lazy(() => import("@/registry/new-york/example/button-secondary")),
       files: ["registry/new-york/example/button-secondary.tsx"],
+    },
+    "button-success": {
+      name: "button-success",
+      type: "components:example",
+      registryDependencies: ["button"],
+      component: React.lazy(() => import("@/registry/new-york/example/button-success")),
+      files: ["registry/new-york/example/button-success.tsx"],
     },
     "button-destructive": {
       name: "button-destructive",
@@ -2224,6 +2273,13 @@ export const Index: Record<string, any> = {
       registryDependencies: ["toast"],
       component: React.lazy(() => import("@/registry/new-york/example/toast-demo")),
       files: ["registry/new-york/example/toast-demo.tsx"],
+    },
+    "toast-success": {
+      name: "toast-success",
+      type: "components:example",
+      registryDependencies: ["toast"],
+      component: React.lazy(() => import("@/registry/new-york/example/toast-success")),
+      files: ["registry/new-york/example/toast-success.tsx"],
     },
     "toast-destructive": {
       name: "toast-destructive",
