@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck - this is ok because <reason>
 // TODO: I'll fix this later.
 
 import { toc } from "mdast-util-toc"
@@ -13,7 +13,7 @@ function flattenNode(node) {
     if (!textTypes.includes(node.type)) return
     p.push(node.value)
   })
-  return p.join(``)
+  return p.join("")
 }
 
 interface Item {

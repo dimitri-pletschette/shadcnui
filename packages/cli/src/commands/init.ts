@@ -221,7 +221,7 @@ export async function promptForConfig(
 
   // Write to file.
   logger.info("")
-  const spinner = ora(`Writing components.json...`).start()
+  const spinner = ora("Writing components.json...").start()
   const targetPath = path.resolve(cwd, "components.json")
   await fs.writeFile(targetPath, JSON.stringify(config, null, 2), "utf8")
   spinner.succeed()
@@ -305,7 +305,7 @@ export async function promptForMinimalConfig(
 }
 
 export async function runInit(cwd: string, config: Config) {
-  const spinner = ora(`Initializing project...`)?.start()
+  const spinner = ora("Initializing project...")?.start()
 
   // Ensure all resolved paths directories exist.
   for (const [key, resolvedPath] of Object.entries(config.resolvedPaths)) {
@@ -379,7 +379,7 @@ export async function runInit(cwd: string, config: Config) {
   spinner?.succeed()
 
   // Install dependencies.
-  const dependenciesSpinner = ora(`Installing dependencies...`)?.start()
+  const dependenciesSpinner = ora("Installing dependencies...")?.start()
   const packageManager = await getPackageManager(cwd)
 
   // TODO: add support for other icon libraries.

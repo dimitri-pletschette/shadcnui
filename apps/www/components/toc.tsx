@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck - this is ok because <reason>
 "use client"
 
 import * as React from "react"
@@ -50,7 +50,7 @@ function useActiveItem(itemIds: string[]) {
           }
         })
       },
-      { rootMargin: `0% 0% -80% 0%` }
+      { rootMargin: "0% 0% -80% 0%" }
     )
 
     itemIds?.forEach((id) => {

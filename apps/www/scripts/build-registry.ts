@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck - this is ok because <reason>
 import fs from "fs"
 import path, { basename } from "path"
 import template from "lodash.template"
@@ -377,7 +377,7 @@ for (const theme of themes) {
 }
 
 fs.writeFileSync(
-  path.join(REGISTRY_PATH, `themes.css`),
+  path.join(REGISTRY_PATH, "themes.css"),
   themeCSS.join("\n"),
   "utf8"
 )

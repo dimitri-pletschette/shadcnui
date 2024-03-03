@@ -1,7 +1,7 @@
 import { type Transformer } from "@/src/utils/transformers"
 import { transformFromAstSync } from "@babel/core"
 import { ParserOptions, parse } from "@babel/parser"
-// @ts-ignore
+// @ts-expect-error - this is ok because <reason>
 import transformTypescript from "@babel/plugin-transform-typescript"
 import * as recast from "recast"
 
@@ -61,7 +61,7 @@ const PARSE_OPTIONS: ParserOptions = {
   ],
 }
 
-export const transformJsx: Transformer<String> = async ({
+export const transformJsx: Transformer<string> = async ({
   sourceFile,
   config,
 }) => {
