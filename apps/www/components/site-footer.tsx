@@ -1,3 +1,5 @@
+
+import { companyName } from "@/app/sharedLabels"
 import { siteConfig } from "@/config/site"
 
 export function SiteFooter() {
@@ -12,7 +14,7 @@ export function SiteFooter() {
             rel="noreferrer"
             className="font-medium underline underline-offset-4"
           >
-            shadcn
+            {companyName}
           </a>
           . The source code is available on{" "}
           <a

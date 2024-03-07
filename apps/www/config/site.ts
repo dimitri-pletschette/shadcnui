@@ -1,5 +1,8 @@
+import { applicationName } from "@/app/sharedLabels"
+
+
 export const siteConfig = {
-  name: "shadcn/ui",
+  name: applicationName,
   url: "https://ui.shadcn.com",
   ogImage: "https://ui.shadcn.com/og.jpg",
   description:
