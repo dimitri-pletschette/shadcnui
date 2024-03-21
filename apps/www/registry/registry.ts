@@ -201,6 +201,12 @@ const ui: Registry = [
     files: ["ui/select.tsx"],
   },
   {
+    name: "selector",
+    type: "components:ui",
+    dependencies: ["@radix-ui/react-popover", "cmdk"],
+    files: ["ui/selector.tsx"],
+  },
+  {
     name: "separator",
     type: "components:ui",
     dependencies: ["@radix-ui/react-separator"],
@@ -834,6 +840,54 @@ const example: Registry = [
     type: "components:example",
     registryDependencies: ["select"],
     files: ["example/select-form.tsx"],
+  },
+  {
+    name: "selector-single-demo",
+    type: "components:example",
+    registryDependencies: ["selector"],
+    files: ["example/selector-single-demo.tsx"],
+  },
+  {
+    name: "selector-multiple-demo",
+    type: "components:example",
+    registryDependencies: ["selector"],
+    files: ["example/selector-multiple-demo.tsx"],
+  },
+  {
+    name: "selector-disabled-demo",
+    type: "components:example",
+    registryDependencies: ["selector"],
+    files: ["example/selector-disabled-demo.tsx"],
+  },
+  {
+    name: "selector-search-demo",
+    type: "components:example",
+    registryDependencies: ["selector"],
+    files: ["example/selector-search-demo.tsx"],
+  },
+  {
+    name: "selector-groups-demo",
+    type: "components:example",
+    registryDependencies: ["selector"],
+    files: ["example/selector-groups-demo.tsx"],
+  },
+  {
+    name: "selector-filters-demo",
+    type: "components:example",
+    registryDependencies: ["selector"],
+    files: ["example/selector-filters-demo.tsx"],
+  },
+  {
+    name: "selector-reselect-demo",
+    type: "components:example",
+    registryDependencies: ["selector"],
+    files: ["example/selector-reselect-demo.tsx"],
+  },
+  {
+    name: "selector-form-demo",
+    type: "components:example",
+    registryDependencies: ["selector"],
+    files: ["example/selector-form-demo.tsx"],
   },
   {
     name: "separator-demo",

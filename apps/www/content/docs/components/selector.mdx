@@ -1,0 +1,94 @@
+---
+title: Selector
+description: Select component for complex data
+component: true
+---
+
+<ComponentPreview name="selector-single-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn-ui@latest add selector
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @radix-ui/react-popover cmdk
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="selector" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { Selector } from "@/components/ui/selector"
+```
+
+```tsx
+<Selector
+  data={[
+    { label: "Option 1", value: "option-1" },
+    { label: "Option 2", value: "option-2" },
+    { label: "Option 3", value: "option-3" },
+  ]}
+  valueAccessor={(item) => item.value}
+  onSelectChange={({ added, removed }) => console.log({ added, removed })}
+  renderValue={(item) => item.label}
+/>
+```
+
+## Examples
+
+### Multi Select
+
+<ComponentPreview name="selector-multiple-demo" />
+
+### Disabled
+
+<ComponentPreview name="selector-disabled-demo" />
+
+### Search
+
+<ComponentPreview name="selector-search-demo" />
+
+### Groups
+
+<ComponentPreview name="selector-groups-demo" />
+
+### Filters
+
+<ComponentPreview name="selector-filters-demo" />
+
+### Reselect
+
+<ComponentPreview name="selector-reselect-demo" />
+
+### Form
+
+<ComponentPreview name="selector-form-demo" />
