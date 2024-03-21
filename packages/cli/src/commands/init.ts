@@ -1,4 +1,4 @@
-import { existsSync, promises as fs } from "fs"
+import { existsSync, promises as fs, readFileSync } from "fs"
 import path from "path"
 import {
   DEFAULT_COMPONENTS,
@@ -23,7 +23,6 @@ import * as templates from "@/src/utils/templates"
 import chalk from "chalk"
 import { Command } from "commander"
 import { execa } from "execa"
-import template from "lodash.template"
 import ora from "ora"
 import prompts from "prompts"
 import { z } from "zod"
@@ -330,27 +329,21 @@ export async function runInit(cwd: string, config: Config) {
 
   const extension = config.tsx ? "ts" : "js"
 
-  const tailwindConfigExtension = path.extname(
-    config.resolvedPaths.tailwindConfig
-  )
-
-  let tailwindConfigTemplate: string
-  if (tailwindConfigExtension === ".ts") {
-    tailwindConfigTemplate = config.tailwind.cssVariables
-      ? templates.TAILWIND_CONFIG_TS_WITH_VARIABLES
-      : templates.TAILWIND_CONFIG_TS
-  } else {
-    tailwindConfigTemplate = config.tailwind.cssVariables
-      ? templates.TAILWIND_CONFIG_WITH_VARIABLES
-      : templates.TAILWIND_CONFIG
-  }
+  const pkgJson = readFileSync(path.resolve(cwd, "package.json"), "utf-8")
+  const projectIsESM = JSON.parse(pkgJson).type === "module"
+  const twConfigExtension = path.extname(config.resolvedPaths.tailwindConfig)
+  let twConfigType: "esm" | "cjs" | "ts" = projectIsESM ? "esm" : "cjs"
+  if (twConfigExtension === ".ts") twConfigType = "ts"
+  else if (twConfigExtension === ".cjs") twConfigType = "cjs"
+  else if (twConfigExtension === ".mjs") twConfigType = "esm"
 
   // Write tailwind config.
   await fs.writeFile(
     config.resolvedPaths.tailwindConfig,
-    template(tailwindConfigTemplate)({
+    templates.tailwindConfig({
+      cssVariables: config.tailwind.cssVariables,
       extension,
-      prefix: config.tailwind.prefix,
+      configType: twConfigType,
     }),
     "utf8"
   )
