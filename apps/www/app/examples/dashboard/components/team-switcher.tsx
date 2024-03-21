@@ -117,6 +117,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                 <CommandGroup key={group.label} heading={group.label}>
                   {group.teams.map((team) => (
                     <CommandItem
+                    value={team.label}
                       key={team.value}
                       onSelect={() => {
                         setSelectedTeam(team)
@@ -151,6 +152,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
               <CommandGroup>
                 <DialogTrigger asChild>
                   <CommandItem
+                  
                     onSelect={() => {
                       setOpen(false)
                       setShowNewTeamDialog(true)

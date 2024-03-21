@@ -68,6 +68,7 @@ export default function ComboboxPopover() {
               <CommandGroup>
                 {statuses.map((status) => (
                   <CommandItem
+                  value={status.label}
                     key={status.value}
                     value={status.value}
                     onSelect={(value) => {
