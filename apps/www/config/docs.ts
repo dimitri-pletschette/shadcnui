@@ -154,6 +154,12 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
+          title: "Code Block",
+          href: "/docs/components/code-block",
+          items: [],
+          label: "New",
+        },
+        {
           title: "Collapsible",
           href: "/docs/components/collapsible",
           items: [],
