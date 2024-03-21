@@ -1321,6 +1321,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/example/cards")),
       files: ["registry/default/example/cards/cards.tsx"],
     },
+    "user-avatar-demo": {
+      name: "user-avatar-demo",
+      type: "components:example",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/example/user-avatar-demo")),
+      files: ["registry/default/example/user-avatar-demo.tsx"],
+    },
   },  "new-york": {
     "accordion": {
       name: "accordion",
@@ -2637,6 +2644,13 @@ export const Index: Record<string, any> = {
       registryDependencies: undefined,
       component: React.lazy(() => import("@/registry/new-york/example/cards")),
       files: ["registry/new-york/example/cards/cards.tsx"],
+    },
+    "user-avatar-demo": {
+      name: "user-avatar-demo",
+      type: "components:example",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/new-york/example/user-avatar-demo")),
+      files: ["registry/new-york/example/user-avatar-demo.tsx"],
     },
   },
 }
