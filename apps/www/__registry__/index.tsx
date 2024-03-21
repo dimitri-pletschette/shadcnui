@@ -558,6 +558,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/example/carousel-orientation")),
       files: ["registry/default/example/carousel-orientation.tsx"],
     },
+    "carousel-overflow": {
+      name: "carousel-overflow",
+      type: "components:example",
+      registryDependencies: ["carousel"],
+      component: React.lazy(() => import("@/registry/default/example/carousel-overflow")),
+      files: ["registry/default/example/carousel-overflow.tsx"],
+    },
     "carousel-api": {
       name: "carousel-api",
       type: "components:example",
@@ -1874,6 +1881,13 @@ export const Index: Record<string, any> = {
       registryDependencies: ["carousel"],
       component: React.lazy(() => import("@/registry/new-york/example/carousel-orientation")),
       files: ["registry/new-york/example/carousel-orientation.tsx"],
+    },
+    "carousel-overflow": {
+      name: "carousel-overflow",
+      type: "components:example",
+      registryDependencies: ["carousel"],
+      component: React.lazy(() => import("@/registry/new-york/example/carousel-overflow")),
+      files: ["registry/new-york/example/carousel-overflow.tsx"],
     },
     "carousel-api": {
       name: "carousel-api",
