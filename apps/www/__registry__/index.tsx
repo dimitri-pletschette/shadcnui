@@ -40,6 +40,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/ui/avatar")),
       files: ["registry/default/ui/avatar.tsx"],
     },
+    "avatar-group": {
+      name: "avatar-group",
+      type: "components:ui",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/ui/avatar-group")),
+      files: ["registry/default/ui/avatar-group.tsx"],
+    },
     "badge": {
       name: "badge",
       type: "components:ui",
@@ -361,6 +368,13 @@ export const Index: Record<string, any> = {
       registryDependencies: ["avatar"],
       component: React.lazy(() => import("@/registry/default/example/avatar-demo")),
       files: ["registry/default/example/avatar-demo.tsx"],
+    },
+    "avatar-group-demo": {
+      name: "avatar-group-demo",
+      type: "components:example",
+      registryDependencies: ["avatar", "avatar-group"],
+      component: React.lazy(() => import("@/registry/default/example/avatar-group-demo")),
+      files: ["registry/default/example/avatar-group-demo.tsx"],
     },
     "badge-demo": {
       name: "badge-demo",
@@ -1357,6 +1371,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/new-york/ui/avatar")),
       files: ["registry/new-york/ui/avatar.tsx"],
     },
+    "avatar-group": {
+      name: "avatar-group",
+      type: "components:ui",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/new-york/ui/avatar-group")),
+      files: ["registry/new-york/ui/avatar-group.tsx"],
+    },
     "badge": {
       name: "badge",
       type: "components:ui",
@@ -1678,6 +1699,13 @@ export const Index: Record<string, any> = {
       registryDependencies: ["avatar"],
       component: React.lazy(() => import("@/registry/new-york/example/avatar-demo")),
       files: ["registry/new-york/example/avatar-demo.tsx"],
+    },
+    "avatar-group-demo": {
+      name: "avatar-group-demo",
+      type: "components:example",
+      registryDependencies: ["avatar", "avatar-group"],
+      component: React.lazy(() => import("@/registry/new-york/example/avatar-group-demo")),
+      files: ["registry/new-york/example/avatar-group-demo.tsx"],
     },
     "badge-demo": {
       name: "badge-demo",
