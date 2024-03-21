@@ -102,6 +102,9 @@
     "dependencies": [
       "embla-carousel-react"
     ],
+    "devDependencies": [
+      "embla-carousel"
+    ],
     "registryDependencies": [
       "button"
     ],
@@ -453,6 +456,13 @@
     ],
     "files": [
       "ui/tooltip.tsx"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "input-with-icon",
+    "files": [
+      "ui/input-with-icon.tsx"
     ],
     "type": "components:ui"
   }

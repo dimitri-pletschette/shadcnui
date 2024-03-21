@@ -320,6 +320,13 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/ui/tooltip")),
       files: ["registry/default/ui/tooltip.tsx"],
     },
+    "input-with-icon": {
+      name: "input-with-icon",
+      type: "components:ui",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/ui/input-with-icon")),
+      files: ["registry/default/ui/input-with-icon.tsx"],
+    },
     "accordion-demo": {
       name: "accordion-demo",
       type: "components:example",
@@ -1321,6 +1328,20 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/default/example/cards")),
       files: ["registry/default/example/cards/cards.tsx"],
     },
+    "input-leading-icon": {
+      name: "input-leading-icon",
+      type: "components:example",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/example/input-leading-icon")),
+      files: ["registry/default/example/input-leading-icon.tsx"],
+    },
+    "input-trailing-icon": {
+      name: "input-trailing-icon",
+      type: "components:example",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/default/example/input-trailing-icon")),
+      files: ["registry/default/example/input-trailing-icon.tsx"],
+    },
   },  "new-york": {
     "accordion": {
       name: "accordion",
@@ -1636,6 +1657,13 @@ export const Index: Record<string, any> = {
       registryDependencies: undefined,
       component: React.lazy(() => import("@/registry/new-york/ui/tooltip")),
       files: ["registry/new-york/ui/tooltip.tsx"],
+    },
+    "input-with-icon": {
+      name: "input-with-icon",
+      type: "components:ui",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/new-york/ui/input-with-icon")),
+      files: ["registry/new-york/ui/input-with-icon.tsx"],
     },
     "accordion-demo": {
       name: "accordion-demo",
@@ -2637,6 +2665,20 @@ export const Index: Record<string, any> = {
       registryDependencies: undefined,
       component: React.lazy(() => import("@/registry/new-york/example/cards")),
       files: ["registry/new-york/example/cards/cards.tsx"],
+    },
+    "input-leading-icon": {
+      name: "input-leading-icon",
+      type: "components:example",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/new-york/example/input-leading-icon")),
+      files: ["registry/new-york/example/input-leading-icon.tsx"],
+    },
+    "input-trailing-icon": {
+      name: "input-trailing-icon",
+      type: "components:example",
+      registryDependencies: undefined,
+      component: React.lazy(() => import("@/registry/new-york/example/input-trailing-icon")),
+      files: ["registry/new-york/example/input-trailing-icon.tsx"],
     },
   },
 }
