@@ -162,7 +162,7 @@ export function BlockPreview({ block }: { block: Block }) {
         <ResizablePanelGroup direction="horizontal" className="relative z-10">
           <ResizablePanel
             ref={ref}
-            className="relative rounded-lg border bg-background transition-all"
+            className="relative rounded-lg border bg-background"
             defaultSize={100}
             minSize={30}
           >
