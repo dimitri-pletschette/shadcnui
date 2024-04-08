@@ -1,4 +1,4 @@
-import { MainNavItem, SidebarNavItem } from "types/nav"
+import type { MainNavItem, SidebarNavItem } from "types/nav"
 
 interface DocsConfig {
   mainNav: MainNavItem[]
@@ -13,7 +13,7 @@ export const docsConfig: DocsConfig = {
     },
     {
       title: "Components",
-      href: "/docs/components/accordion",
+      href: "/docs/components",
     },
     {
       title: "Themes",
@@ -24,8 +24,18 @@ export const docsConfig: DocsConfig = {
       href: "/examples",
     },
     {
-      title: "Blocks",
-      href: "/blocks",
+      title: "Figma",
+      href: "/docs/figma",
+    },
+    {
+      title: "GitHub",
+      href: "https://github.com/shadcn/ui",
+      external: true,
+    },
+    {
+      title: "Twitter",
+      href: "https://twitter.com/shadcn",
+      external: true,
     },
   ],
   sidebarNav: [
@@ -81,6 +91,7 @@ export const docsConfig: DocsConfig = {
     },
     {
       title: "Components",
+      href: "/docs/components",
       items: [
         {
           title: "Accordion",
