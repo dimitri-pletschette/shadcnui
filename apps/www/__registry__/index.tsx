@@ -1303,6 +1303,17 @@ export const Index: Record<string, any> = {
       subcategory: "undefined",
       chunks: []
     },
+    "input-otp-input-mode": {
+      name: "input-otp-input-mode",
+      type: "components:example",
+      registryDependencies: ["input-otp"],
+      component: React.lazy(() => import("@/registry/default/example/input-otp-input-mode")),
+      source: "",
+      files: ["registry/default/example/input-otp-input-mode.tsx"],
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
     "input-otp-separator": {
       name: "input-otp-separator",
       type: "components:example",
@@ -4437,6 +4448,17 @@ export const Index: Record<string, any> = {
       component: React.lazy(() => import("@/registry/new-york/example/input-otp-pattern")),
       source: "",
       files: ["registry/new-york/example/input-otp-pattern.tsx"],
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "input-otp-input-mode": {
+      name: "input-otp-input-mode",
+      type: "components:example",
+      registryDependencies: ["input-otp"],
+      component: React.lazy(() => import("@/registry/new-york/example/input-otp-input-mode")),
+      source: "",
+      files: ["registry/new-york/example/input-otp-input-mode.tsx"],
       category: "undefined",
       subcategory: "undefined",
       chunks: []
