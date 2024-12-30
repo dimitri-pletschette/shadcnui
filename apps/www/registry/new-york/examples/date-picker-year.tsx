@@ -1,19 +1,19 @@
 "use client"
 
 import * as React from "react"
+import { CalendarIcon } from "@radix-ui/react-icons"
 import { format } from "date-fns"
-import { CalendarIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/default/ui/button"
-import { Calendar } from "@/registry/default/ui/calendar"
+import { Button } from "@/registry/new-york/ui/button"
+import { Calendar } from "@/registry/new-york/ui/calendar"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/registry/default/ui/popover"
+} from "@/registry/new-york/ui/popover"
 
-export function DatePickerDemo() {
+export default function DatePickerYear() {
   const [date, setDate] = React.useState<Date>()
 
   return (
@@ -26,12 +26,12 @@ export function DatePickerDemo() {
             !date && "text-muted-foreground"
           )}
         >
-          <CalendarIcon />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
+          <CalendarIcon className="mr-2 h-4 w-4" />
+          {date ? format(date, "PPP") : <span>Select your birth date</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
-        <Calendar mode="single" selected={date} onSelect={setDate} />
+        <Calendar mode="single" selected={date} onSelect={setDate} autoFocus />
       </PopoverContent>
     </Popover>
   )

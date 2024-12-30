@@ -3864,6 +3864,21 @@ export const Index: Record<string, any> = {
       source: "",
       meta: undefined,
     },
+    "date-picker-year": {
+      name: "date-picker-year",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["button","calendar","popover"],
+      files: [{
+        path: "registry/new-york/examples/date-picker-year.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      categories: undefined,
+      component: React.lazy(() => import("@/registry/new-york/examples/date-picker-year.tsx")),
+      source: "",
+      meta: undefined,
+    },
     "dialog-demo": {
       name: "dialog-demo",
       description: "",
@@ -9116,6 +9131,21 @@ export const Index: Record<string, any> = {
       }],
       categories: undefined,
       component: React.lazy(() => import("@/registry/default/examples/date-picker-with-range.tsx")),
+      source: "",
+      meta: undefined,
+    },
+    "date-picker-year": {
+      name: "date-picker-year",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["button","calendar","popover"],
+      files: [{
+        path: "registry/default/examples/date-picker-year.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      categories: undefined,
+      component: React.lazy(() => import("@/registry/default/examples/date-picker-year.tsx")),
       source: "",
       meta: undefined,
     },
