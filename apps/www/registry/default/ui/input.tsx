@@ -1,22 +1,118 @@
 import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
+import { useComposition } from "@/registry/default/hooks/use-composition"
 
-const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
-  ({ className, type, ...props }, ref) => {
+interface InputComposition {
+  Icon: typeof InputIcon
+}
+
+const iconVariants = cva("absolute top-3", {
+  variants: {
+    size: {
+      default: "h-4 w-4",
+    },
+    side: {
+      left: "left-3",
+      right: "right-3",
+    },
+  },
+  defaultVariants: {
+    size: "default",
+    side: "left",
+  },
+})
+
+export interface InputIconProps
+  extends React.HTMLAttributes<HTMLOrSVGElement>,
+    VariantProps<typeof iconVariants> {}
+
+const InputIcon = React.forwardRef<HTMLSlotElement, InputIconProps>(
+  ({ children, className, size, side }, ref) => {
     return (
-      <input
-        type={type}
-        className={cn(
-          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-          className
-        )}
+      <Slot
+        data-icon
         ref={ref}
-        {...props}
-      />
+        className={cn(iconVariants({ size, side }), className)}
+      >
+        {children}
+      </Slot>
     )
+  }
+)
+InputIcon.displayName = "InputIcon"
+
+const inputVariants = cva(
+  "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+  {
+    variants: {
+      left: {
+        true: "pl-10",
+      },
+      right: {
+        true: "pr-10",
+      },
+    },
+    defaultVariants: {
+      left: false,
+      right: false,
+    },
+  }
+)
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, ...props }, ref) => {
+    return <input type={type} className={className} ref={ref} {...props} />
   }
 )
 Input.displayName = "Input"
 
-export { Input }
+const Root = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ children, className, ...props }, ref) => {
+    const Icons = useComposition(children, InputIcon.displayName!)
+    const hasLeftIcon = React.useMemo(
+      () =>
+        Icons.some(
+          (icon) => (icon as React.ReactElement).props.side === "left"
+        ),
+      [Icons]
+    )
+    const hasRightIcon = React.useMemo(
+      () =>
+        Icons.some(
+          (icon) => (icon as React.ReactElement).props.side === "right"
+        ),
+      [Icons]
+    )
+    if (Icons.length > 0) {
+      return (
+        <div className="relative">
+          {Icons}
+          <Input
+            ref={ref}
+            className={cn(
+              inputVariants({ left: hasLeftIcon, right: hasRightIcon }),
+              className
+            )}
+            {...props}
+          />
+        </div>
+      )
+    }
+    return (
+      <Input ref={ref} className={cn(inputVariants(), className)} {...props} />
+    )
+  }
+) as React.ForwardRefExoticComponent<
+  InputProps & React.RefAttributes<HTMLInputElement>
+> &
+  InputComposition
+
+Root.displayName = "Input"
+Root.Icon = InputIcon
+
+export { Root as Input }
